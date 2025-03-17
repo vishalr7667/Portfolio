@@ -4,6 +4,10 @@ module.exports = {
     content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
   	extend: {
+		fontFamily: {
+			poppins: ["Poppins", "sans-serif"], // For normal text
+			playfair: ["Playfair Display", "serif"], // For quotes
+		},
   		animation: {
   			meteor: 'meteor 5s linear infinite'
   		},

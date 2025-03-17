@@ -54,28 +54,20 @@ const ExperienceCard = ({
 const ExperienceSection = () => {
   const experiences = [
     {
-      icon: Network,
-      title: "WordPress Developer",
-      company: "Fiverr",
-      period: "2019 - 2020",
-      description:
-        "Worked on developing and customizing WordPress websites for clients globally.",
-    },
-    {
       icon: Layers,
-      title: "Junior Frontend Developer",
-      company: "Sera Programmer",
-      period: "2021 - 2023",
+      title: "Junior Php Developer",
+      company: "Protolabz eServices",
+      period: "2024 - 2025",
       description:
-        "Assisted in building and optimizing user interfaces with a focus on responsive and interactive designs.",
+        "Assisted in developing and optimizing backend functionalities using PHP, ensuring efficient data handling, API integration, and seamless user experiences.",
     },
     {
       icon: Code2,
-      title: "JavaScript Developer",
-      company: "OlovJS (Sera Programmer)",
-      period: "2023 - Present",
+      title: "Javascript Developer",
+      company: "Protolabz eServices",
+      period: "2025 - Present",
       description:
-        "Contributed to developing JavaScript libraries and enhancing framework functionalities.",
+        "Developed and optimized JavaScript-based solutions, enhancing frontend and backend functionalities for improved performance and user experience."
     },
   ];
 
@@ -84,7 +76,7 @@ const ExperienceSection = () => {
       <div className="min-h-screen bg-gradient-to-b  relative overflow-hidden pt-32 pb-20">
         {/* Animated gradient background */}
         <div
-          className="absolute inset-0 bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90"
+          className="absolute inset-0 bg-gradient-to-b from-[#020617] via-[#084258] to-[#000D1A]/90"
         />
 
         {/* Animated particles */}
@@ -118,7 +110,7 @@ const ExperienceSection = () => {
           </div>
 
           {/* Experience grid with improved layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 max-w-7xl mx-auto">
             {experiences.map((exp, index) => (
               <ExperienceCard key={index} {...exp} />
             ))}

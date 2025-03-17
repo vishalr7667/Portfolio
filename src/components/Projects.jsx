@@ -1,6 +1,7 @@
 import React from "react";
 import { Github, ExternalLink } from "lucide-react";
-import olova from "../assets/images/olova.png";
+import chetnas from "../assets/images/chetnas.png";
+import protolabz from "../assets/images/protolabz.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const MacOsButtons = () => (
@@ -14,17 +15,27 @@ const MacOsButtons = () => (
 const ProjectShowcase = () => {
   const projects = [
     {
-      title: "Olova! A Lightweight JavaScript Library",
+      title: "Dr chetnas Hospital Management platform",
       description:
-        "Olova.js is a lightweight JavaScript library for building modern, reactive, and dynamic web applications. It features a simple, component-based architecture, enabling developers to create reusable and interactive UI elements with minimal code and overhead.",
-      tags: ["JavaScript", "Reactive", "Web Development"],
+        "Dr chetnas Hospital Management platform is a platform for managing a hospital's patients, doctors, and appointments with a modern and responsive design And Dynamic Graph View.",
+      tags: ["Php", "J-Query", "Ajax", "Chart.js", "Web Development"],
       links: {
-        github: "https://github.com/olovajs/olova",
-        demo: "https://olova.js.org/",
+        
+        demo: "https:platform.drchetnas.com",
       },
-      image: olova,
+      image: chetnas,
       featured: true,
     },
+    {
+      title: "Protolabz Reporting Portal",
+      description: "Protolabz Reporting Portal is the official internal platform of our company, designed to facilitate daily reporting and project management. It supports nine distinct user roles, each with specific functionalities based on their permissions. The portal features dynamic graph visualizations for better insights and tracking. Built using Laravel Blade, it incorporates DataTables, AJAX, and jQuery to enhance interactivity and efficiency",
+      tags: ["Laravel", "Blade", "DataTables", "AJAX", "jQuery", "Web Development"],
+      links: {
+        demo: "https://reporting.protolabzit.com",
+      },
+      image: protolabz,
+      featured: true,
+    }
   ];
 
   return (
@@ -43,12 +54,12 @@ const ProjectShowcase = () => {
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                className="w-full h-full object-cover group-hover:scale-10 transition-transform duration-500"
               />
             </div>
 
             {/* Text Section */}
-            <Card className="md:w-1/2 bg-gradient-to-br from-slate-800 to-gray-900 rounded-lg overflow-hidden shadow-md transition-transform duration-500 group-hover:scale-105 group-hover:shadow-2xl p-6">
+            <Card className="md:w-1/2 bg-gradient-to-br md:max-h-[400px] md:overflow-auto from-slate-800 to-gray-900 rounded-lg overflow-hidden shadow-md transition-transform duration-500 group-hover:scale-10 group-hover:shadow-2xl p-6">
               <MacOsButtons />
 
               <CardHeader>
@@ -62,14 +73,18 @@ const ProjectShowcase = () => {
                     </CardTitle>
                   </div>
                   <div className="flex gap-4">
-                    <a
-                      href={project.links.github}
-                      className="text-slate-400 hover:text-emerald-400 transition-all duration-300 transform hover:scale-125"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Github size={22} />
-                    </a>
+                    
+                    {project.links.github && (
+                        <a
+                          href={project.links.github}
+                          className="text-slate-400 hover:text-emerald-400 transition-all duration-300 transform hover:scale-125"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                        <Github size={22} />
+                        </a>
+                    )
+                    }
                     <a
                       href={project.links.demo}
                       className="text-slate-400 hover:text-emerald-400 transition-all duration-300 transform hover:scale-125"

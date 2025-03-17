@@ -25,6 +25,7 @@ const AnimatedGrid = () => {
                   animationDelay: `${Math.random() * 2}s`,
                 }}
               />
+              
             ))}
           </div>
           <div className="absolute inset-0 grid grid-rows-[repeat(40,1fr)] opacity-20">
@@ -49,31 +50,31 @@ const AnimatedGrid = () => {
 
 export default function Hero() {
   const words = [
-    "Full-Stack Developer & UI/UX Enthusiast",
-    "JavaScript Developer & Creator of Olova.js",
-    "Learning MARN Stack",
-    "Linux & GitHub for DevOps Enthusiast",
+    "Full-Stack Developer",
+    "JavaScript & Php Developer",
+    "Exploring Machine Learning",
+    "Enthusiast of Exploring New Technologies",
   ];
 
   const [code] = useState(`
 const profile = {
-    name: 'Nazmul Hossain',
-    title: 'Full-Stack Developer | Cloud Enthusiast | Problem Solver',
+    name: 'Vishal Kumar',
+    title: 'Full-Stack Developer | Ai Enthusiast | Problem Solver',
     skills: [
-        'React', 'NextJS', 'Redux', 'Express',
-        'MySQL', 'MongoDB', 'Docker', 'AWS', 'TypeScript',
-        'GraphQL', 'Git', 'Linux', 'Discord Development'
+        'React', 'Express',
+        'MySQL', 'MongoDB', 'AWS', 'TypeScript',
+        'Postgres', 'Git', 'Laravel', 'Php', 'J-Query'
     ],
     hardWorker: true,
     quickLearner: true,
     problemSolver: true,
-    yearsOfExperience: 4, 
+    yearsOfExperience: 1, 
     hireable: function() {
         return (
             this.hardWorker &&
             this.problemSolver &&
             this.skills.length >= 5 &&
-            this.yearsOfExperience >= 3
+            this.yearsOfExperience >= 1
         );
     }
 };
@@ -85,7 +86,7 @@ const profile = {
 
   return (
     <>
-      <main className="pt-20 lg:pt-[0rem] bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90 text-white min-h-screen">
+      <main className="pt-20 lg:pt-[5rem] bg-gradient-to-b from-[#000D1A] via-[#084258] to-[#000D1A]/90 text-white min-h-screen">
         <section className="hero min-h-screen flex items-center relative px-4 sm:px-6 lg:px-8">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900/50"></div>
 
@@ -94,7 +95,7 @@ const profile = {
 
           {/* Meteors Effect */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <Meteors number={10} />
+            <Meteors number={1} />
           </div>
 
           {/* Main content container */}
@@ -121,7 +122,7 @@ const profile = {
                     I'm
                     <span className="typing-effect gradient-text">
                       {" "}
-                      Nazmul Hossain
+                      Vishal Rajput
                     </span>
                   </span>
                 </h1>
@@ -142,16 +143,15 @@ const profile = {
               {/* Description */}
               <div className="relative mb-8 sm:mb-12 max-w-xl">
                 <p className="text-base sm:text-xl text-gray-300/90 leading-relaxed">
-                  JavaScript lover 🚀 | OlovaJS creator 🔧 | Crafting frameworks
-                  and coding the future 💻✨
+                  JavaScript lover 🚀 | Php Developer 🔧 | Pasionate about Ai 🤖✨
                 </p>
               </div>
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 animate__animated animate__fadeInUp animate__delay-2s">
                 {/* View Projects Button */}
-                <a
-                  href="https://github.com/seraprogrammer"
+                {/* <a
+                  href="https://github.com/"
                   className="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-teal-400 p-0.5 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_2rem_-0.5rem_#60A5FA]"
                 >
                   <span className="block w-full px-6 sm:px-8 py-3 sm:py-4 rounded-[11px] bg-gray-900 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-teal-400">
@@ -160,7 +160,7 @@ const profile = {
                       <i className="fas fa-arrow-right transform transition-all duration-300 group-hover:translate-x-1"></i>
                     </span>
                   </span>
-                </a>
+                </a> */}
 
                 {/* Contact Button */}
                 <a
@@ -177,7 +177,7 @@ const profile = {
               </div>
 
               {/* Floating badges */}
-              <div className="hidden lg:block absolute left-[5.5rem] top-[2.3rem] animate-float-slow">
+              <div className="hidden lg:block absolute left-[14.5rem] top-[2.3rem] animate-float-slow">
                 <div className="px-4 py-2 rounded-lg bg-purple-500/10 backdrop-blur-sm border border-purple-500/20 text-purple-400">
                   <i className="fas fa-wand-magic-sparkles"></i>&nbsp;&nbsp;UI
                   Magic

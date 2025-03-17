@@ -88,7 +88,7 @@ export default function Contact() {
 
   return (
     <main
-      className="pt-20 lg:pt-[0rem] bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90
+      className="pt-20 lg:pt-[2rem] bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90
  text-white min-h-screen"
     >
       <section className="hero min-h-screen flex items-center relative px-4 sm:px-6 lg:px-8">
@@ -112,7 +112,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-semibold">Email</h3>
-                    <p className="text-gray-400">olovajs@gmail.com</p>
+                    <p className="text-gray-400">vishalrajput845866@gmail.com</p>
                   </div>
                 </div>
 
@@ -122,7 +122,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-semibold">Location</h3>
-                    <p className="text-gray-400">Laxmipure, Natore 6400</p>
+                    <p className="text-gray-400">Chachoki, Phagwara (Punjab)</p>
                   </div>
                 </div>
               </div>

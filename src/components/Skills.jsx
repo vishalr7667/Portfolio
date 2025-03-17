@@ -12,6 +12,9 @@ import {
   FaLinux,
   FaFigma,
   FaAws,
+  FaBootstrap,
+  FaPhp,
+  FaLaravel,
 } from "react-icons/fa";
 import {
   SiNextdotjs,
@@ -89,8 +92,12 @@ const SkillsSection = () => {
           icon: <BsFileEarmarkCode className="w-4 h-4 text-[#E34F26]" />,
         },
         {
-          name: "CSS3",
-          icon: <BsFileEarmarkCode className="w-4 h-4 text-[#1572B6]" />,
+            name: "CSS3",
+            icon: <BsFileEarmarkCode className="w-4 h-4 text-[#1572B6]" />,
+        },
+        {
+          name: "Bootstrap",
+          icon: <FaBootstrap className="w-4 h-4 text-[#563D7C]" />,
         },
       ],
     },
@@ -120,31 +127,35 @@ const SkillsSection = () => {
           icon: <BsGrid1X2 className="w-4 h-4 text-[#FF6C37]" />,
         },
         {
-          name: "GraphQL",
-          icon: <SiGraphql className="w-4 h-4 text-[#E10098]" />,
+          name: "Laravel",
+          icon: <FaLaravel className="w-4 h-4 text-[#34e100]" />,
+        },
+        {
+          name: "PHP",
+          icon: <FaPhp className="w-4 h-4 text-[#E10098]" />,
         },
       ],
     },
-    {
-      icon: Layout,
-      title: "UI/UX Design",
-      color: "text-purple-400",
-      skills: [
-        { name: "Figma", icon: <FaFigma className="w-4 h-4 text-[#F24E1E]" /> },
-        {
-          name: "Responsive Design",
-          icon: <Layout className="w-4 h-4 text-[#38B2AC]" />,
-        },
-        {
-          name: "Wireframing",
-          icon: <BsGrid1X2 className="w-4 h-4 text-[#9CA3AF]" />,
-        },
-        {
-          name: "Prototyping",
-          icon: <MdAnimation className="w-4 h-4 text-[#F59E0B]" />,
-        },
-      ],
-    },
+    // {
+    //   icon: Layout,
+    //   title: "UI/UX Design",
+    //   color: "text-purple-400",
+    //   skills: [
+    //     { name: "Figma", icon: <FaFigma className="w-4 h-4 text-[#F24E1E]" /> },
+    //     {
+    //       name: "Responsive Design",
+    //       icon: <Layout className="w-4 h-4 text-[#38B2AC]" />,
+    //     },
+    //     {
+    //       name: "Wireframing",
+    //       icon: <BsGrid1X2 className="w-4 h-4 text-[#9CA3AF]" />,
+    //     },
+    //     {
+    //       name: "Prototyping",
+    //       icon: <MdAnimation className="w-4 h-4 text-[#F59E0B]" />,
+    //     },
+    //   ],
+    // },
     {
       icon: Cloud,
       title: "Cloud & DevOps",
@@ -178,7 +189,6 @@ const SkillsSection = () => {
           name: "Webpack",
           icon: <SiWebpack className="w-4 h-4 text-[#8DD6F9]" />,
         },
-        { name: "Redux", icon: <SiRedux className="w-4 h-4 text-[#764ABC]" /> },
         {
           name: "Firebase",
           icon: <SiFirebase className="w-4 h-4 text-[#FFCA28]" />,
@@ -214,7 +224,7 @@ const SkillsSection = () => {
 
   return (
     <main
-      className="pt-15 lg:pt-0 bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90
+      className="pt-15 lg:pt-0 bg-gradient-to-b from-[#000D1A] via-[#084258] to-[#000D1A]/90
  text-white min-h-screen"
     >
       <section className="container mx-auto px-4 py-11">
