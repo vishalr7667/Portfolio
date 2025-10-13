@@ -1,7 +1,9 @@
 import React from "react";
-import { Github, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import chetnas from "../assets/images/chetnas.png";
 import protolabz from "../assets/images/protolabz.png";
+import scanmatter from "../assets/images/Scansmatter.jpg";
+import Ftt from "../assets/images/ftt.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const MacOsButtons = () => (
@@ -20,11 +22,10 @@ const ProjectShowcase = () => {
         "Dr chetnas Hospital Management platform is a platform for managing a hospital's patients, doctors, and appointments with a modern and responsive design And Dynamic Graph View.",
       tags: ["Php", "J-Query", "Ajax", "Chart.js", "Web Development"],
       links: {
-        
         demo: "https:platform.drchetnas.com",
       },
       image: chetnas,
-      featured: true,
+      featured: false,
     },
     {
       title: "Protolabz Reporting Portal",
@@ -34,6 +35,26 @@ const ProjectShowcase = () => {
         demo: "https://reporting.protolabzit.com",
       },
       image: protolabz,
+      featured: true,
+    },
+    {
+      title: "Scansmatter 3D Asset Marketplace",
+      description: "Developed a curated 3D asset marketplace for digital artists, game developers, filmmakers, and architects. Implemented credit-based subscription and payment system (via Paddle), integrated file/data management with Bunny, and designed user-friendly workflows. Utilized Laravel Blade, DataTables, AJAX, and jQuery to create a dynamic and responsive platform.",
+      tags: ["Laravel", "Blade", "DataTables", "AJAX", "jQuery", "Web Development", "Paddle", "Bunny"],
+      links: {
+        demo: "https://scansmatter.com/home",
+      },
+      image: scanmatter,
+      featured: true,
+    },
+    {
+      title: "FastTrackTutorials",
+      description: "Enhanced an online tutorial platform specializing in 3D art education. Delivered course modules and contributed to outsource studio operations, providing 3D assets and environments for various projects. Utilized Laravel Blade, DataTables, AJAX, and jQuery to improve user experience and platform functionality.",
+      tags: ["Laravel", "Blade", "DataTables", "AJAX", "jQuery", "Web Development", "Paddle", "Bunny"],
+      links: {
+        demo: "https://fasttracktutorials.com/",
+      },
+      image: Ftt,
       featured: true,
     }
   ];
@@ -50,41 +71,31 @@ const ProjectShowcase = () => {
             className="flex flex-col md:flex-row items-center group rounded-lg p-[2px] bg-gradient-to-r from-cyan-500 via-purple-500 to-emerald-500 bg-[length:400%_400%] animate-gradient-xy hover:bg-[length:100%_100%] transition-all duration-700 shadow-lg"
           >
             {/* Image Section */}
-            <div className="md:w-1/2 overflow-hidden rounded-lg">
+            <div className="md:w-1/2 overflow-hidden rounded-lg md:h-[450px] ">
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover group-hover:scale-10 transition-transform duration-500"
+                className="w-full h-full object-center group-hover:scale-10 transition-transform duration-500"
               />
             </div>
 
             {/* Text Section */}
-            <Card className="md:w-1/2 bg-gradient-to-br md:max-h-[400px] md:overflow-auto from-slate-800 to-gray-900 rounded-lg overflow-hidden shadow-md transition-transform duration-500 group-hover:scale-10 group-hover:shadow-2xl p-6">
+            <Card className="md:w-1/2 bg-gradient-to-br md:max-h-[450px] md:h-[450px] md:overflow-auto from-slate-800 to-gray-900 rounded-lg overflow-hidden shadow-md transition-transform duration-500 group-hover:scale-10 group-hover:shadow-2xl p-6">
               <MacOsButtons />
 
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div>
+                    {project.featured && (
                     <div className="text-emerald-400 text-sm font-mono mb-2 tracking-wide uppercase">
                       Featured Project
                     </div>
+                    )}
                     <CardTitle className="text-slate-100 text-3xl font-bold">
                       {project.title}
                     </CardTitle>
                   </div>
                   <div className="flex gap-4">
-                    
-                    {project.links.github && (
-                        <a
-                          href={project.links.github}
-                          className="text-slate-400 hover:text-emerald-400 transition-all duration-300 transform hover:scale-125"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                        <Github size={22} />
-                        </a>
-                    )
-                    }
                     <a
                       href={project.links.demo}
                       className="text-slate-400 hover:text-emerald-400 transition-all duration-300 transform hover:scale-125"

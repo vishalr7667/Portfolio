@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Send, Phone, MapPin, Mail } from "lucide-react";
+import { useState } from "react";
+import { Send, MapPin, Mail } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -129,7 +129,7 @@ export default function Contact() {
             </div>
 
             {/* Contact Form */}
-            <div className="backdrop-blur-lg bg-white/5 p-8 rounded-2xl shadow-xl">
+            <div className="backdrop-blur-lg bg-white/5 p-8 mt-10 rounded-2xl shadow-xl">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 gap-6">
                   <div>

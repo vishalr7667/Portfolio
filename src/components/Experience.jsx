@@ -1,5 +1,4 @@
-import React from "react";
-import { Code2, Activity, Cpu, Layers, Network, Binary } from "lucide-react";
+import { Layers } from "lucide-react";
 
 const ExperienceCard = ({
   title,
@@ -55,20 +54,12 @@ const ExperienceSection = () => {
   const experiences = [
     {
       icon: Layers,
-      title: "Junior Php Developer",
+      title: "Laravel Developer",
       company: "Protolabz eServices",
-      period: "2024 - 2025",
+      period: "2024 - Present",
       description:
-        "Assisted in developing and optimizing backend functionalities using PHP, ensuring efficient data handling, API integration, and seamless user experiences.",
-    },
-    {
-      icon: Code2,
-      title: "Javascript Developer",
-      company: "Protolabz eServices",
-      period: "2025 - Present",
-      description:
-        "Developed and optimized JavaScript-based solutions, enhancing frontend and backend functionalities for improved performance and user experience."
-    },
+        "Working as a Laravel Developer at Protolabz eServices, focusing on developing and maintaining robust web applications using the Laravel framework. Also contributed to MERN stack projects, gaining hands-on experience with MongoDB, Express.js, React, and Node.js to build full-stack solutions.",
+    },    
   ];
 
   return (
@@ -110,7 +101,7 @@ const ExperienceSection = () => {
           </div>
 
           {/* Experience grid with improved layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1  gap-10 max-w-7xl mx-auto">
             {experiences.map((exp, index) => (
               <ExperienceCard key={index} {...exp} />
             ))}

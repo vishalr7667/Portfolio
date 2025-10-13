@@ -1,5 +1,4 @@
-import React from "react";
-import profileImage from "../assets/images/profile.png";
+// import React from "react";
 
 const AboutMe = () => {
   return (
@@ -9,8 +8,8 @@ const AboutMe = () => {
       <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8 justify-center">
       <div className="relative max-w-2xl border-x-4 border-[#4ECCA3] bg-gradient-to-tr from-gray-900 via-[#084258] to-gray-800 p-6 shadow-md">
         <span className="absolute top-0 left-0 transform -translate-x-3 -translate-y-3 text-6xl text-[#4ECCA3] font-serif">“</span>
-        <h2 class="text-[#4ECCA3] text-2xl font-bold mb-4">WHO I AM?</h2>
-        <p class="text-lg leading-relaxed text-white font-playfair">
+        <h2 className="text-[#4ECCA3] text-2xl font-bold mb-4">WHO I AM?</h2>
+        <p className="text-lg leading-relaxed text-white font-playfair">
             Hello! I’m Vishal Rajput, a passionate JavaScript developer specializing in creating innovative web solutions and user-friendly interfaces.
             Currently, I’m expanding into backend development to grow as a full-stack developer and create seamless, robust web applications.
             I’m a lifelong learner and innovator, driven by a desire to contribute to the developer community with new ideas and tools that deliver real value.
