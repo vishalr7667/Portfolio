@@ -1,9 +1,9 @@
-import React from "react";
+
 import { ExternalLink } from "lucide-react";
 import chetnas from "../assets/images/chetnas.png";
 import protolabz from "../assets/images/protolabz.png";
 import scanmatter from "../assets/images/Scansmatter.jpg";
-import Ftt from "../assets/images/ftt.png";
+import Ftt from "../assets/images/FTT.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const MacOsButtons = () => (
