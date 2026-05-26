@@ -1,119 +1,137 @@
-import { Layers } from "lucide-react";
+import React from "react";
+import { Calendar, MapPin } from "lucide-react";
 
-const ExperienceCard = ({
-  title,
-  company,
-  period,
-  description,
-  icon: Icon,
-}) => (
-  <div className="group relative overflow-hidden transform hover:-translate-y-2 transition-all duration-300">
-    {/* Glass morphism effect */}
-    <div className="absolute inset-0 backdrop-blur-lg bg-white/5 rounded-lg" />
-
-    {/* Animated gradient border */}
-    <div className="absolute -inset-[2px] bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-lg opacity-0 group-hover:opacity-100 animate-gradient-xy transition-all duration-500" />
-
-    <div className="relative bg-gray-900/90 rounded-lg p-8 h-full border border-gray-800/50 shadow-xl backdrop-blur-xl">
-      {/* Floating icon with pulse effect */}
-      <div className="relative mb-6">
-        <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-25 rounded-full blur-xl group-hover:opacity-75 animate-pulse transition-all duration-500" />
-        <Icon className="w-12 h-12 text-cyan-400 relative z-10 transform group-hover:rotate-12 transition-transform duration-300" />
-      </div>
-
-      {/* Content with improved typography */}
-      <div className="space-y-3">
-        <h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-          {title}
-        </h3>
-        <div className="flex justify-between items-center text-gray-300">
-          <span className="font-semibold text-blue-400">{company}</span>
-          <span className="text-sm font-mono bg-blue-500/10 px-3 py-1 rounded-full">
-            {period}
-          </span>
-        </div>
-        <p className="text-gray-300 border-l-4 border-blue-500/50 pl-4 mt-4 leading-relaxed">
-          {description}
-        </p>
-      </div>
-
-      {/* Decorative elements */}
-      <div className="absolute top-4 right-4 w-20 h-20">
-        <div className="absolute top-0 right-0 w-6 h-[2px] bg-cyan-500/50" />
-        <div className="absolute top-0 right-0 w-[2px] h-6 bg-cyan-500/50" />
-      </div>
-      <div className="absolute bottom-4 left-4 w-20 h-20">
-        <div className="absolute bottom-0 left-0 w-6 h-[2px] bg-purple-500/50" />
-        <div className="absolute bottom-0 left-0 w-[2px] h-6 bg-purple-500/50" />
-      </div>
-    </div>
-  </div>
-);
-
-const ExperienceSection = () => {
+export default function Experience() {
   const experiences = [
     {
-      icon: Layers,
-      title: "Laravel Developer",
       company: "Protolabz eServices",
-      period: "2024 - Present",
-      description:
-        "Working as a Laravel Developer at Protolabz eServices, focusing on developing and maintaining robust web applications using the Laravel framework. Also contributed to MERN stack projects, gaining hands-on experience with MongoDB, Express.js, React, and Node.js to build full-stack solutions.",
-    },    
+      location: "Phagwara, India",
+      role: "Full Stack Developer",
+      duration: "Apr 2024 – Present",
+      bullets: [
+        "Developed 35+ production REST APIs for auth, Stripe billing, and analytics serving 200–500 active users on LintLock SaaS platform",
+        "Implemented Stripe webhook lifecycle (subscription.created, invoice.payment_succeeded, subscription.deleted) reducing billing sync errors to near-zero",
+        "Resolved N+1 query issues via MongoDB aggregation pipelines and .lean() queries, cutting average API response time by ~200ms in production",
+        "Built InfyTracker enterprise platform with 7 user roles, automated DomPDF report generation, and Artisan-scheduled daily cron jobs across 2 branches"
+      ],
+      stack: ["Node.js", "React", "Laravel", "MongoDB"]
+    }
   ];
 
   return (
-    <>
-      <div className="min-h-screen bg-gradient-to-b  relative overflow-hidden pt-32 pb-20">
-        {/* Animated gradient background */}
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-[#020617] via-[#084258] to-[#000D1A]/90"
-        />
-
-        {/* Animated particles */}
-        <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-2 h-2 bg-blue-500/20 rounded-full animate-float"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-              }}
-            />
-          ))}
+    <section id="experience" className="bg-[#080D1A] border-t border-[#1E2D4A] py-20 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl">
+        
+        {/* Left-Aligned Title (Typographically consistent with Skills and Projects) */}
+        <div className="mb-12 md:mb-16 fade-up">
+          <h2 className="text-3xl md:text-[38px] font-semibold text-[#F1F5F9] leading-tight">
+            Work Experience
+          </h2>
+          <div 
+            className="w-12 h-[3px] mt-3 mb-4 rounded-[2px]" 
+            style={{ background: "linear-gradient(90deg, #4F8EF7, #38BDF8)" }}
+          ></div>
         </div>
 
-        {/* Content container */}
-        <div className="relative container mx-auto px-6 mt-10">
-          {/* Section header with enhanced effects */}
-          <div className="flex flex-col items-center space-y-8 mb-20">
-            <div className="relative">
-              <h2 className="text-5xl md:text-7xl font-black text-transparent bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-center">
-                Professional Journey
-              </h2>
-              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 blur-3xl rounded-full" />
+        {/* Timeline Container with custom gradient fade track */}
+        <div className="relative pl-8 md:pl-12 space-y-12 py-4">
+          
+          {/* Vertical timeline line fading to transparent at the bottom */}
+          <div 
+            className="absolute left-[15px] md:left-[23px] top-0 bottom-0 w-[1px]" 
+            style={{ 
+              background: "linear-gradient(to bottom, #1E2D4A 60%, transparent 100%)" 
+            }}
+          ></div>
+
+          {experiences.map((exp, index) => (
+            <div key={index} className="relative fade-up">
+              
+              {/* Company Logo placeholder replacing briefcase */}
+              <span className="absolute -left-[45px] md:-left-[53px] top-1.5 flex h-8 w-8 items-center justify-center rounded-full bg-[#111827] border border-[#4F8EF7] text-[#4F8EF7] font-bold text-sm ring-4 ring-[#080D1A]">
+                P
+              </span>
+
+              {/* Card Container with Left Border accent */}
+              <div className="bg-[#111827] border border-[#1E2D4A] border-l-[3px] border-l-[#4F8EF7] rounded-xl p-6 md:p-8 shadow-md transition-all hover:border-[#4F8EF7]/40">
+                
+                {/* Header Information */}
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-semibold text-[#F1F5F9]">
+                      {exp.role}
+                    </h3>
+                    <p className="text-lg font-medium text-[#4F8EF7] mt-1">
+                      {exp.company}
+                    </p>
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-[#D1D5DB]/70 font-mono">
+                    <span className="flex items-center gap-1.5">
+                      <Calendar size={14} />
+                      {exp.duration}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <MapPin size={14} />
+                      {exp.location}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Bullets */}
+                <ul className="space-y-4 list-none text-base leading-[1.6] mb-6">
+                  {exp.bullets.map((bullet, bulletIndex) => (
+                    <li key={bulletIndex} className="relative pl-6 text-[#D1D5DB]">
+                      <span className="absolute left-0 top-2.5 h-1.5 w-1.5 rounded-full bg-[#38BDF8]"></span>
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Tech Stack Pills Row */}
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-[#1E2D4A]">
+                  {exp.stack.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="px-3 py-1 bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.15)] rounded-full text-xs text-[#E2E8F0] font-medium"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+              </div>
+
             </div>
-            <p className="text-lg md:text-xl text-gray-400 font-medium tracking-wide text-center max-w-2xl">
-              "Transforming ideas into digital reality, one project at a time"
-            </p>
+          ))}
+
+          {/* Recruiter Callout Opportunities Card */}
+          <div className="relative fade-up">
+            
+            {/* Pulsing Green Dot timeline anchor */}
+            <span className="absolute -left-[45px] md:-left-[53px] top-4 flex h-8 w-8 items-center justify-center rounded-full bg-[#080D1A] border border-[#1E2D4A] ring-4 ring-[#080D1A]">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#38BDF8] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#38BDF8]"></span>
+              </span>
+            </span>
+
+            {/* Opportunities Card Content */}
+            <div className="bg-[rgba(79,142,247,0.03)] border border-dashed border-[#1E2D4A] rounded-xl p-6 md:p-8">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-[#38BDF8] text-sm font-semibold tracking-wide uppercase">
+                  Available for new opportunities
+                </span>
+              </div>
+              <p className="text-[#D1D5DB] text-base leading-[1.6]">
+                "Looking for Full Stack roles in Mohali · Chandigarh · Ludhiana · Jalandhar · Remote — Expected CTC: 7 LPA"
+              </p>
+            </div>
+
           </div>
 
-          {/* Experience grid with improved layout */}
-          <div className="grid grid-cols-1  gap-10 max-w-7xl mx-auto">
-            {experiences.map((exp, index) => (
-              <ExperienceCard key={index} {...exp} />
-            ))}
-          </div>
         </div>
 
-        {/* Enhanced background effects */}
-        <div className="absolute top-20 left-20 w-96 h-96 bg-cyan-500/10 rounded-full filter blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full filter blur-3xl animate-pulse delay-1000" />
       </div>
-    </>
+    </section>
   );
-};
-
-export default ExperienceSection;
+}
