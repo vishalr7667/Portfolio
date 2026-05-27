@@ -1,225 +1,185 @@
 import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import IconCloudDemo from "./globe";
-import { Code2, Paintbrush, Database, Layout, Cpu, Cloud } from "lucide-react";
-import {
-  FaReact,
-  FaNodeJs,
-  FaPython,
-  FaDocker,
-  FaGitAlt,
-  FaLinux,
-  FaFigma,
-  FaAws,
-  FaBootstrap,
-  FaPhp,
-  FaLaravel,
-} from "react-icons/fa";
-import {
-  SiNextdotjs,
-  SiTypescript,
-  SiTailwindcss,
-  SiPostgresql,
-  SiMongodb,
-  SiGraphql,
-  SiJest,
-  SiWebpack,
-  SiRedux,
-  SiFirebase,
-  SiVercel,
-  SiVite,
-} from "react-icons/si";
-import { TbBrandVscode } from "react-icons/tb";
-import { BsFileEarmarkCode, BsGrid1X2 } from "react-icons/bs";
-import { MdAnimation } from "react-icons/md";
-import { FcWorkflow } from "react-icons/fc";
+import { Monitor, Server, Database as DatabaseIcon, Code2, Zap, Wrench } from "lucide-react";
 
-const SkillCard = ({ icon: Icon, title, skills, color }) => (
-  <Card className="group relative overflow-hidden bg-gray-900/80 border-gray-700 hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/20">
-    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(100,100,255,0.1)] to-transparent group-hover:via-[rgba(100,100,255,0.2)] animate-shimmer"></div>
-    <CardContent className="p-6 relative z-10">
-      <div className="flex items-center gap-4 mb-6">
-        <div
-          className={`p-3 rounded-xl bg-gray-800/50 ${color} group-hover:scale-110 transition-transform duration-300`}
-        >
-          <Icon className="w-8 h-8" />
-        </div>
-        <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
-          {title}
-        </h3>
-      </div>
-      <div className="flex flex-wrap gap-2">
-        {skills.map((skill, index) => (
-          <Badge
-            key={index}
-            variant="outline"
-            className="group/badge relative bg-gray-800/50 hover:bg-gray-700/80 text-gray-100 border-gray-600 flex items-center gap-2 py-2 px-3 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20"
-          >
-            <span className="transform group-hover/badge:scale-110 transition-transform duration-300">
-              {skill.icon}
-            </span>
-            <span className="font-medium">{skill.name}</span>
-          </Badge>
-        ))}
-      </div>
-    </CardContent>
-  </Card>
-);
+export default function Skills() {
+  const iconMap = {
+    Monitor: Monitor,
+    Server: Server,
+    Database: DatabaseIcon,
+    Code2: Code2,
+    Zap: Zap,
+    Wrench: Wrench
+  };
 
-const SkillsSection = () => {
-  const skillCategories = [
+  const skillGroups = [
     {
-      icon: Code2,
-      title: "Frontend Development",
-      color: "text-blue-400",
-      skills: [
-        { name: "React", icon: <FaReact className="w-4 h-4 text-[#61DAFB]" /> },
-        {
-          name: "Next.js",
-          icon: <SiNextdotjs className="w-4 h-4 text-white" />,
-        },
-        {
-          name: "TypeScript",
-          icon: <SiTypescript className="w-4 h-4 text-[#3178C6]" />,
-        },
-        {
-          name: "Tailwind CSS",
-          icon: <SiTailwindcss className="w-4 h-4 text-[#38B2AC]" />,
-        },
-        {
-          name: "HTML5",
-          icon: <BsFileEarmarkCode className="w-4 h-4 text-[#E34F26]" />,
-        },
-        {
-            name: "CSS3",
-            icon: <BsFileEarmarkCode className="w-4 h-4 text-[#1572B6]" />,
-        },
-        {
-          name: "Bootstrap",
-          icon: <FaBootstrap className="w-4 h-4 text-[#563D7C]" />,
-        },
-      ],
+      title: "Frontend",
+      accentColor: "#4F8EF7",
+      borderColorClass: "border-l-[#4F8EF7] hover:border-[#4F8EF7]",
+      textColorClass: "text-[#4F8EF7]",
+      iconName: "Monitor",
+      skills: ["React.js", "Next.js", "TypeScript", "JavaScript ES6+", "Tailwind CSS"],
     },
     {
-      icon: Database,
-      title: "Backend Development",
-      color: "text-green-400",
-      skills: [
-        {
-          name: "Node.js",
-          icon: <FaNodeJs className="w-4 h-4 text-[#339933]" />,
-        },
-        {
-          name: "MySQL",
-          icon: <SiPostgresql className="w-4 h-4 text-[#336791]" />,
-        },
-        {
-          name: "MongoDB",
-          icon: <SiMongodb className="w-4 h-4 text-[#47A248]" />,
-        },
-        {
-          name: "REST APIs",
-          icon: <BsGrid1X2 className="w-4 h-4 text-[#FF6C37]" />,
-        },
-        {
-          name: "Laravel",
-          icon: <FaLaravel className="w-4 h-4 text-[#34e100]" />,
-        },
-        {
-          name: "PHP",
-          icon: <FaPhp className="w-4 h-4 text-[#E10098]" />,
-        },
-      ],
-    },
-    // {
-    //   icon: Layout,
-    //   title: "UI/UX Design",
-    //   color: "text-purple-400",
-    //   skills: [
-    //     { name: "Figma", icon: <FaFigma className="w-4 h-4 text-[#F24E1E]" /> },
-    //     {
-    //       name: "Responsive Design",
-    //       icon: <Layout className="w-4 h-4 text-[#38B2AC]" />,
-    //     },
-    //     {
-    //       name: "Wireframing",
-    //       icon: <BsGrid1X2 className="w-4 h-4 text-[#9CA3AF]" />,
-    //     },
-    //     {
-    //       name: "Prototyping",
-    //       icon: <MdAnimation className="w-4 h-4 text-[#F59E0B]" />,
-    //     },
-    //   ],
-    // },
-    {
-      icon: Cloud,
-      title: "Cloud & DevOps",
-      color: "text-orange-400",
-      skills: [
-        {
-          name: "Docker",
-          icon: <FaDocker className="w-4 h-4 text-[#2496ED]" />,
-        },
-        { name: "CI/CD", icon: <FcWorkflow className="w-4 h-4" /> },
-        { name: "Git", icon: <FaGitAlt className="w-4 h-4 text-[#F05032]" /> },
-      ],
+      title: "Backend",
+      accentColor: "#38BDF8",
+      borderColorClass: "border-l-[#38BDF8] hover:border-[#38BDF8]",
+      textColorClass: "text-[#38BDF8]",
+      iconName: "Server",
+      skills: ["Node.js", "Express.js", "REST API", "JWT Auth", "Controller-Service-Repository"],
     },
     {
-      icon: Cpu,
-      title: "Tools & Technologies",
-      color: "text-pink-400",
-      skills: [
-        {
-          name: "VS Code",
-          icon: <TbBrandVscode className="w-4 h-4 text-[#007ACC]" />,
-        },
-        {
-          name: "Webpack",
-          icon: <SiWebpack className="w-4 h-4 text-[#8DD6F9]" />,
-        },
-        { name: "Vercel", icon: <SiVercel className="w-4 h-4 text-white" /> },
-        { name: "Vite", icon: <SiVite className="w-4 h-4 text-[#646CFF]" /> },
-      ],
+      title: "Database",
+      accentColor: "#818CF8",
+      borderColorClass: "border-l-[#818CF8] hover:border-[#818CF8]",
+      textColorClass: "text-[#818CF8]",
+      iconName: "Database",
+      skills: ["MongoDB", "MySQL", "PostgreSQL", "Redis"],
+    },
+    {
+      title: "Laravel",
+      accentColor: "#F472B6",
+      borderColorClass: "border-l-[#F472B6] hover:border-[#F472B6]",
+      textColorClass: "text-[#F472B6]",
+      iconName: "Code2",
+      skills: ["Laravel 11/12", "Eloquent ORM", "Artisan", "spatie/permissions", "Queue Jobs"],
+    },
+    {
+      title: "Integrations",
+      accentColor: "#FBBF24",
+      borderColorClass: "border-l-[#FBBF24] hover:border-[#FBBF24]",
+      textColorClass: "text-[#FBBF24]",
+      iconName: "Zap",
+      skills: ["Stripe", "PhonePe", "Cloudinary", "Pusher", "Agenda", "Mailchimp"],
+    },
+    {
+      title: "Tools",
+      accentColor: "#34D399",
+      borderColorClass: "border-l-[#34D399] hover:border-[#34D399]",
+      textColorClass: "text-[#34D399]",
+      iconName: "Wrench",
+      skills: ["Git", "Docker (Basic)", "Postman", "Vercel", "Render"],
     },
   ];
 
   return (
-    <main
-      className="pt-15 lg:pt-0 bg-gradient-to-b from-[#000D1A] via-[#084258] to-[#000D1A]/90
- text-white min-h-screen"
-    >
-      <section className="container mx-auto px-4 py-11">
-        <div className="flex justify-center items-center ">
-          <IconCloudDemo />
+    <section id="skills" className="bg-[#080D1A] border-t border-b border-[#1E2D4A] py-24 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        
+        {/* Title & Subtitle */}
+        <div className="mb-12 md:mb-16 fade-up">
+          <h2 className="text-3xl md:text-[38px] font-semibold text-[#F1F5F9] leading-tight">
+            Skills & Expertise
+          </h2>
+          <div 
+            className="w-12 h-[3px] mt-3 mb-4 rounded-[2px]" 
+            style={{ background: "linear-gradient(90deg, #4F8EF7, #38BDF8)" }}
+          ></div>
+          <p className="text-[#6B7280] text-base">
+            Technologies and tools I use to build production systems
+          </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, index) => (
-            <SkillCard
-              key={index}
-              icon={category.icon}
-              title={category.title}
-              skills={category.skills}
-              color={category.color}
-            />
-          ))}
-        </div>
-      </section>
-      <style jsx>{`
-        @keyframes shimmer {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(100%);
-          }
-        }
-        .animate-shimmer {
-          animation: shimmer 2s infinite;
-        }
-      `}</style>
-    </main>
-  );
-};
 
-export default SkillsSection;
+        {/* Layout Container */}
+        <div className="flex flex-col lg:flex-row gap-[48px] items-start">
+          
+          {/* Left Column: Bio & Stats (35% Width on Desktop, Sticky on lg breakpoint) */}
+          <div className="w-full lg:w-[35%] flex flex-col space-y-8 lg:sticky lg:top-[100px] fade-in-left">
+            <div className="space-y-4">
+              <h3 className="text-[18px] font-semibold text-[#38BDF8] border-l-2 border-[#4F8EF7] pl-3">
+                Engineering Scalable Systems
+              </h3>
+              <p className="text-[#D1D5DB] text-base leading-[1.6]">
+                I design and develop high-performance, secure, and scalable web applications. By bridging the agility of the MERN stack with the enterprise-grade patterns of Laravel, I build clean systems that deliver real-world business value.
+              </p>
+              <p className="text-[#D1D5DB] text-base leading-[1.6]">
+                My focus is on architectural excellence — utilizing design patterns like Controller-Service-Repository, implementing secure session workflows, optimizing database queries, and integrating robust billing models.
+              </p>
+            </div>
+
+            {/* "By the numbers" stats row with padding and background accent */}
+            <div className="pt-8">
+              <div className="bg-[rgba(79,142,247,0.05)] border border-[#1E2D4A] rounded-xl py-[20px] px-[24px]">
+                <div className="grid grid-cols-3 gap-2 text-center md:flex md:justify-between md:items-center">
+                  
+                  {/* Years Exp */}
+                  <div className="flex-1">
+                    <div className="text-[36px] font-bold text-[#4F8EF7] leading-none mb-1.5">2+</div>
+                    <div className="text-[10px] sm:text-[12px] text-[#6B7280] uppercase tracking-[1px] font-semibold">
+                      Years Exp
+                    </div>
+                  </div>
+
+                  {/* Vertical Divider */}
+                  <div className="w-[1px] h-10 bg-[#1E2D4A] self-center hidden md:block"></div>
+
+                  {/* APIs Built */}
+                  <div className="flex-grow flex-1 px-2 border-l border-r border-[#1E2D4A]/50 md:border-none">
+                    <div className="text-[36px] font-bold text-[#4F8EF7] leading-none mb-1.5">35+</div>
+                    <div className="text-[10px] sm:text-[12px] text-[#6B7280] uppercase tracking-[1px] font-semibold">
+                      APIs Built
+                    </div>
+                  </div>
+
+                  {/* Vertical Divider */}
+                  <div className="w-[1px] h-10 bg-[#1E2D4A] self-center hidden md:block"></div>
+
+                  {/* Projects */}
+                  <div className="flex-1">
+                    <div className="text-[36px] font-bold text-[#4F8EF7] leading-none mb-1.5">8</div>
+                    <div className="text-[10px] sm:text-[12px] text-[#6B7280] uppercase tracking-[1px] font-semibold">
+                      Projects
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Skills Cards Grid (65% Width on Desktop) */}
+          <div 
+            className="w-full lg:w-[65%] grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-xl"
+            style={{ 
+              background: "radial-gradient(ellipse 60% 40% at 80% 50%, rgba(79,142,247,0.05), transparent)" 
+            }}
+          >
+            {skillGroups.map((group, groupIndex) => {
+              const IconComponent = iconMap[group.iconName];
+
+              return (
+                <div 
+                  key={groupIndex} 
+                  className={`bg-[#111827] border border-[#1E2D4A] border-l-[3px] hover:border-l-[4px] ${group.borderColorClass} rounded-xl p-6 transition-all duration-200 ease-in-out hover:-translate-y-[2px] hover:shadow-[0_4px_20px_rgba(0,0,0,0.3)] stagger-card`}
+                  style={{ transitionDelay: `${groupIndex * 80}ms` }}
+                >
+                  {/* Card Title & Icon */}
+                  <div className="flex items-center gap-2 mb-4">
+                    {IconComponent && <IconComponent size={16} className={group.textColorClass} />}
+                    <h4 className={`text-[15px] font-semibold ${group.textColorClass}`}>
+                      {group.title}
+                    </h4>
+                  </div>
+
+                  {/* Skills Pills */}
+                  <div className="flex flex-wrap gap-2">
+                    {group.skills.map((skill, skillIndex) => (
+                      <span
+                        key={skillIndex}
+                        className="px-3 py-1 bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.15)] rounded-[20px] text-[13px] text-[#E2E8F0] font-medium transition-all duration-200 hover:bg-[rgba(255,255,255,0.1)] hover:border-[rgba(255,255,255,0.3)]"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  );
+}

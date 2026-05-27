@@ -1,115 +1,129 @@
 import React, { useState, useEffect } from "react";
-import {
-  FaHome,
-  FaLaptopCode,
-  FaUser,
-  FaBriefcase,
-  FaGraduationCap,
-  FaCode,
-  FaEnvelope,
-  FaBars,
-} from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
+import { Menu, X, Github } from "lucide-react";
 
 export default function Header() {
-  const location = useLocation();
-  const [activeLink, setActiveLink] = useState(() => {
-    const path = location.pathname.substring(1) || "home";
-    return path;
-  });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+  const currentPath = location.pathname;
 
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  // Determine active section based on route path
+  const activeSection = currentPath === "/" ? "about" : currentPath.substring(1);
+
+  const githubUrl = import.meta.env.VITE_GITHUB_URL || "https://github.com/YOUR_USERNAME";
 
   const navLinks = [
-    { id: "home", icon: FaHome, text: "Home", path: "/" },
-    { id: "skills", icon: FaCode, text: "Skills", path: "/skills" },
-    {
-      id: "experience",
-      icon: FaBriefcase,
-      text: "Experience",
-      path: "/experience",
-    },
-    {
-      id: "education",
-      icon: FaGraduationCap,
-      text: "Education",
-      path: "/education",
-    },
-    { id: "projects", icon: FaLaptopCode, text: "Projects", path: "/projects" },
-    { id: "contact", icon: FaEnvelope, text: "Contact", path: "/contact" },
+    { id: "about", text: "About", path: "/" },
+    { id: "skills", text: "Skills", path: "/skills" },
+    { id: "experience", text: "Experience", path: "/experience" },
+    { id: "projects", text: "Projects", path: "/projects" },
+    { id: "contact", text: "Contact", path: "/contact" },
   ];
 
-  return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-gray-900/95 backdrop-blur-md md:bg-transparent md:backdrop-blur-none">
-      <div className="md:fixed md:top-4 md:left-1/2 md:transform md:-translate-x-1/2 w-full md:w-auto">
-        <div className="p-[2px] md:rounded-full bg-gradient-to-r from-emerald-400 via-cyan-500 to-indigo-500 animate-gradient-x">
-          <nav className="bg-gray-900/90 backdrop-blur-md md:rounded-full px-4 md:px-6 py-2.5">
-            {/* Mobile Menu Button */}
-            <div className="flex justify-between items-center md:hidden px-2">
-              <Link to="/" className="text-white font-bold">Portfolio</Link>
-              <button 
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-white p-2"
-              >
-                <FaBars />
-              </button>
-            </div>
+  // Listener to handle background changes on scroll past 50px
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
 
-            {/* Navigation Links */}
-            <div className={`${isMenuOpen ? 'block' : 'hidden'} md:block`}>
-              <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-1 lg:gap-2 py-4 md:py-0">
-                {navLinks.map(({ id, icon: Icon, text, path }) => (
-                  <Link
-                    key={id}
-                    to={path}
-                    onClick={() => {
-                      setActiveLink(id);
-                      setIsMenuOpen(false);
-                    }}
-                    className={`px-3 py-2 md:py-1.5 rounded-lg md:rounded-full text-sm font-medium
-                      transition-all duration-300 flex items-center gap-2
-                      hover:bg-white/10 
-                      ${
-                        activeLink === id
-                          ? "bg-white/15 text-white"
-                          : "text-gray-300 hover:text-white"
-                      }
-                    `}
-                  >
-                    <Icon
-                      className={`text-base ${
-                        activeLink === id ? "scale-110" : ""
-                      }`}
-                    />
-                    <span className="inline">{text}</span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </nav>
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <header 
+      className={`sticky top-0 z-50 w-full backdrop-blur-[12px] transition-all duration-300 ${
+        isScrolled 
+          ? "bg-[#080D1A]/95 border-b border-[#1E2D4A]" 
+          : "bg-[#080D1A]/60 border-b border-transparent"
+      }`}
+    >
+      <div className="mx-auto flex max-w-7xl h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+        
+        {/* Left: Monogram */}
+        <Link 
+          to="/" 
+          onClick={() => setIsMenuOpen(false)}
+          className="text-2xl font-bold tracking-wider text-[#F1F5F9] hover:text-[#38BDF8] transition-colors"
+        >
+          VK
+        </Link>
+
+        {/* Center: Desktop Navigation Links */}
+        <nav className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <Link
+              key={link.id}
+              to={link.path}
+              className={`text-sm font-medium transition-all duration-200 hover:text-[#38BDF8] pb-1 border-b-2 ${
+                activeSection === link.id 
+                  ? "text-[#38BDF8] border-[#38BDF8]" 
+                  : "text-[#D1D5DB] border-transparent hover:border-[#38BDF8]/40"
+              }`}
+            >
+              {link.text}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Right: GitHub Button */}
+        <div className="hidden md:flex items-center">
+          <a
+            href={githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-[#1E2D4A] px-4 py-2 text-sm font-medium text-[#D1D5DB] transition-all hover:bg-[#1E2D4A] hover:text-[#F1F5F9] hover:border-[#38BDF8]"
+          >
+            <Github size={16} />
+            <span>GitHub</span>
+          </a>
+        </div>
+
+        {/* Mobile Hamburger Menu button */}
+        <div className="flex md:hidden">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="text-[#D1D5DB] hover:text-[#F1F5F9] p-1.5 focus:outline-none"
+            aria-label="Toggle navigation menu"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </div>
 
-      <style>{`
-        @keyframes gradient-x {
-          0%, 100% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-        }
-        .animate-gradient-x {
-          animation: gradient-x 3s linear infinite;
-          background-size: 200% 200%;
-        }
-      `}</style>
+      {/* Mobile Navigation Drawer */}
+      {isMenuOpen && (
+        <div className="md:hidden border-b border-[#1E2D4A] bg-[#111827] px-4 py-4 space-y-3">
+          <nav className="flex flex-col space-y-2">
+            {navLinks.map((link) => (
+              <Link
+                key={link.id}
+                to={link.path}
+                onClick={() => setIsMenuOpen(false)}
+                className={`block rounded-md px-3 py-2 text-base font-medium transition-colors ${
+                  activeSection === link.id
+                    ? "bg-[#1E2D4A] text-[#38BDF8]"
+                    : "text-[#D1D5DB] hover:bg-[#1E2D4A] hover:text-[#F1F5F9]"
+                }`}
+              >
+                {link.text}
+              </Link>
+            ))}
+          </nav>
+          <div className="pt-2 border-t border-[#1E2D4A]">
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex w-full items-center justify-center gap-2 rounded-md border border-[#1E2D4A] py-2 text-base font-medium text-[#D1D5DB] hover:bg-[#1E2D4A]"
+            >
+              <Github size={18} />
+              <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

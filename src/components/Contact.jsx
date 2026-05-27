@@ -1,53 +1,25 @@
-import { useState } from "react";
-import { Send, MapPin, Mail } from "lucide-react";
+import React, { useState } from "react";
+import { Mail, Linkedin, Send, AlertCircle, CheckCircle } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",
-    message: "",
+    message: ""
   });
+  const [error, setError] = useState("");
+  const [showToast, setShowToast] = useState(false);
 
-  const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState(null);
-
-  const validateForm = () => {
-    let tempErrors = {};
-    let isValid = true;
-
-    if (!formData.name.trim()) {
-      tempErrors.name = "Name is required";
-      isValid = false;
-    }
-
-    if (!formData.email.trim()) {
-      tempErrors.email = "Email is required";
-      isValid = false;
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      tempErrors.email = "Email is invalid";
-      isValid = false;
-    }
-
-    if (!formData.subject.trim()) {
-      tempErrors.subject = "Subject is required";
-      isValid = false;
-    }
-
-    if (!formData.message.trim()) {
-      tempErrors.message = "Message is required";
-      isValid = false;
-    }
-
-    setErrors(tempErrors);
-    return isValid;
-  };
+  const linkedinUrl = import.meta.env.VITE_LINKEDIN_URL || "https://linkedin.com/in/YOUR_USERNAME";
+  const displayUsername = linkedinUrl.includes("/in/") ? `in/${linkedinUrl.split("/in/")[1].split("/")[0]}` : "LinkedIn Profile";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
-    if (!validateForm()) {
-      setStatus("Please fill in all required fields correctly.");
+    const { name, email, message } = formData;
+    if (!name.trim() || !email.trim() || !message.trim()) {
+      setError("Please fill in all fields before sending.");
       return;
     }
 
@@ -87,151 +59,148 @@ export default function Contact() {
   };
 
   return (
-    <main
-      className="pt-20 lg:pt-[2rem] bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90
- text-white min-h-screen"
-    >
-      <section className="hero min-h-screen flex items-center relative px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Contact Info */}
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                  Get in Touch
-                </h2>
-                <p className="text-gray-300 text-lg">
-                  Have a question or want to work together? Drop us a message!
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className="bg-purple-500/10 p-3 rounded-lg">
-                    <Mail className="w-6 h-6 text-purple-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold">Email</h3>
-                    <p className="text-gray-400">vishalrajput845866@gmail.com</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="bg-pink-500/10 p-3 rounded-lg">
-                    <MapPin className="w-6 h-6 text-pink-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold">Location</h3>
-                    <p className="text-gray-400">Chachoki, Phagwara (Punjab)</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <div className="backdrop-blur-lg bg-white/5 p-8 mt-10 rounded-2xl shadow-xl">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 gap-6">
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Your Name"
-                      className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
-                        errors.name ? "border-red-500" : "border-gray-700"
-                      } focus:border-blue-500 focus:outline-none transition-colors`}
-                      value={formData.name}
-                      onChange={(e) =>
-                        setFormData({ ...formData, name: e.target.value })
-                      }
-                    />
-                    {errors.name && (
-                      <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-                    )}
-                  </div>
-
-                  <div>
-                    <input
-                      type="email"
-                      placeholder="Your Email"
-                      className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
-                        errors.email ? "border-red-500" : "border-gray-700"
-                      } focus:border-blue-500 focus:outline-none transition-colors`}
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
-                    />
-                    {errors.email && (
-                      <p className="text-red-500 text-sm mt-1">
-                        {errors.email}
-                      </p>
-                    )}
-                  </div>
-
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Subject"
-                      className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
-                        errors.subject ? "border-red-500" : "border-gray-700"
-                      } focus:border-blue-500 focus:outline-none transition-colors`}
-                      value={formData.subject}
-                      onChange={(e) =>
-                        setFormData({ ...formData, subject: e.target.value })
-                      }
-                    />
-                    {errors.subject && (
-                      <p className="text-red-500 text-sm mt-1">
-                        {errors.subject}
-                      </p>
-                    )}
-                  </div>
-
-                  <div>
-                    <textarea
-                      placeholder="Your Message"
-                      rows="4"
-                      className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
-                        errors.message ? "border-red-500" : "border-gray-700"
-                      } focus:border-blue-500 focus:outline-none transition-colors resize-none`}
-                      value={formData.message}
-                      onChange={(e) =>
-                        setFormData({ ...formData, message: e.target.value })
-                      }
-                    ></textarea>
-                    {errors.message && (
-                      <p className="text-red-500 text-sm mt-1">
-                        {errors.message}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 px-6 rounded-lg font-semibold flex items-center justify-center space-x-2 hover:opacity-90 transition-opacity"
-                >
-                  <span>Send Message</span>
-                  <Send className="w-4 h-4" />
-                </button>
-              </form>
-
-              {/* Status Message */}
-              {status && (
-                <div
-                  className={`mt-4 text-center ${
-                    status.includes("success")
-                      ? "text-green-400"
-                      : "text-red-400"
-                  }`}
-                >
-                  <p>{status}</p>
-                </div>
-              )}
-            </div>
+    <section id="contact" className="bg-[#080D1A] border-t border-[#1E2D4A] py-20 px-4 sm:px-6 lg:px-8 relative">
+      
+      {/* Toast Alert using #38BDF8 as accent */}
+      {showToast && (
+        <div className="fixed bottom-5 right-5 z-50 flex items-center gap-3 bg-[#111827] border border-[#38BDF8] text-[#F1F5F9] px-4 py-3 rounded-lg shadow-lg animate-bounce">
+          <CheckCircle className="text-[#38BDF8]" size={20} />
+          <div>
+            <p className="font-semibold text-sm">Message Sent!</p>
+            <p className="text-xs text-[#D1D5DB]/70">Thank you for reaching out.</p>
           </div>
         </div>
-      </section>
-    </main>
+      )}
+
+      <div className="mx-auto max-w-5xl">
+        {/* Title */}
+        <div className="mb-12 md:mb-16 text-center fade-up">
+          <h2 className="text-3xl md:text-[38px] font-semibold text-[#F1F5F9] leading-tight">
+            Let's Work Together
+          </h2>
+          <p className="text-[#D1D5DB] text-base md:text-lg mt-3">
+            Open to Full Stack roles in Mohali · Chandigarh · Ludhiana · Jalandhar · Remote
+          </p>
+          <div className="h-1 w-20 bg-[#4F8EF7] mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        {/* 2 Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          {/* Left Column: Direct Social Cards (Side by Side Desktop) */}
+          <div className="lg:col-span-5 flex flex-col gap-6 fade-up">
+            <h3 className="text-xl font-semibold text-[#F1F5F9]">
+              Contact Details
+            </h3>
+            
+            {/* Cards side by side layout */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              
+              {/* Email Card */}
+              <a 
+                href="mailto:vishalrajput845866@gmail.com" 
+                className="bg-[#111827] border border-[#1E2D4A] hover:border-[#4F8EF7] rounded-xl p-5 flex flex-col justify-between items-start transition-all hover:-translate-y-0.5 shadow-sm"
+              >
+                <div className="p-3 bg-[#4F8EF7]/10 text-[#4F8EF7] rounded-lg mb-4">
+                  <Mail size={22} />
+                </div>
+                <div>
+                  <h4 className="text-sm font-semibold text-[#F1F5F9]">Email Me</h4>
+                  <p className="text-xs text-[#D1D5DB]/70 mt-1 break-all">
+                    vishalrajput845866@gmail.com
+                  </p>
+                </div>
+              </a>
+
+              {/* LinkedIn Card */}
+              <a 
+                href={linkedinUrl} 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#111827] border border-[#1E2D4A] hover:border-[#38BDF8] rounded-xl p-5 flex flex-col justify-between items-start transition-all hover:-translate-y-0.5 shadow-sm"
+              >
+                <div className="p-3 bg-[#38BDF8]/10 text-[#38BDF8] rounded-lg mb-4">
+                  <Linkedin size={22} />
+                </div>
+                <div>
+                  <h4 className="text-sm font-semibold text-[#F1F5F9]">LinkedIn</h4>
+                  <p className="text-xs text-[#D1D5DB]/70 mt-1">
+                    {displayUsername}
+                  </p>
+                </div>
+              </a>
+
+            </div>
+          </div>
+
+          {/* Right Column: Contact Form */}
+          <div className="lg:col-span-7 bg-[#111827] border border-[#1E2D4A] rounded-xl p-6 md:p-8 fade-up">
+            <h3 className="text-xl font-semibold text-[#F1F5F9] mb-6">
+              Send a Message
+            </h3>
+
+            {error && (
+              <div className="mb-4 flex items-center gap-2 bg-[#EF4444]/10 border border-[#EF4444]/20 text-[#EF4444] px-4 py-3 rounded-lg text-sm">
+                <AlertCircle size={16} />
+                <span>{error}</span>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-[#D1D5DB] mb-2">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  placeholder="Your name"
+                  className="w-full bg-[#080D1A] border border-[#1E2D4A] rounded-lg px-4 py-3 text-sm text-[#F1F5F9] placeholder-[#D1D5DB]/40 focus:outline-none focus:border-[#4F8EF7] transition-colors"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-[#D1D5DB] mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="Your email address"
+                  className="w-full bg-[#080D1A] border border-[#1E2D4A] rounded-lg px-4 py-3 text-sm text-[#F1F5F9] placeholder-[#D1D5DB]/40 focus:outline-none focus:border-[#4F8EF7] transition-colors"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-[#D1D5DB] mb-2">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  rows="4"
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="Tell me about your project..."
+                  className="w-full bg-[#080D1A] border border-[#1E2D4A] rounded-lg px-4 py-3 text-sm text-[#F1F5F9] placeholder-[#D1D5DB]/40 focus:outline-none focus:border-[#4F8EF7] transition-colors resize-none"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full inline-flex items-center justify-center gap-2 bg-[#4F8EF7] hover:bg-[#4F8EF7]/90 text-[#F1F5F9] font-medium py-3 rounded-lg transition-colors"
+              >
+                <span>Send Message</span>
+                <Send size={16} />
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
   );
 }
