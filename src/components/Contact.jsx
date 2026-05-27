@@ -13,7 +13,7 @@ export default function Contact() {
   const linkedinUrl = import.meta.env.VITE_LINKEDIN_URL || "https://linkedin.com/in/YOUR_USERNAME";
   const displayUsername = linkedinUrl.includes("/in/") ? `in/${linkedinUrl.split("/in/")[1].split("/")[0]}` : "LinkedIn Profile";
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
@@ -23,19 +23,39 @@ export default function Contact() {
       return;
     }
 
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      setError("Please enter a valid email address.");
-      return;
+    // Create a new FormData object to send to Web3Forms API
+    const form = new FormData();
+    form.append("access_key", "b356009d-b38a-40eb-b0e3-bb8eafebc51a");
+    form.append("name", formData.name);
+    form.append("email", formData.email);
+    form.append("subject", formData.subject || "New Contact Form Submission");
+    form.append("message", formData.message);
+
+    try {
+      // Send form data to Web3Forms API
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: form,
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setStatus("Message sent successfully!");
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+        setErrors({});
+      } else {
+        setStatus(result.message || "There was an error sending your message.");
+      }
+    } catch (error) {
+      setStatus("An error occurred. Please try again.");
+      console.error("Error:", error);
     }
-
-    // Success State - Show mock success toast
-    setShowToast(true);
-    setFormData({ name: "", email: "", message: "" });
-
-    // Hide toast after 4 seconds
-    setTimeout(() => {
-      setShowToast(false);
-    }, 4000);
   };
 
   return (
