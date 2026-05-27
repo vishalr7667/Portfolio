@@ -39,7 +39,7 @@ export default function Projects() {
       ],
       links: {
         github: "https://github.com/vishalr7667/LMS_FRONTEND",
-        live: ""
+        live: "https://vishalresume7667.netlify.app"
       }
     },
     {
@@ -94,14 +94,14 @@ export default function Projects() {
   return (
     <section id="projects" className="bg-[#080D1A] border-t border-[#1E2D4A] py-20 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        
+
         {/* Typographically consistent Title & Underline */}
         <div className="mb-12 md:mb-16 fade-up">
           <h2 className="text-3xl md:text-[38px] font-semibold text-[#F1F5F9] leading-tight">
             Things I've Built
           </h2>
-          <div 
-            className="w-12 h-[3px] mt-3 mb-4 rounded-[2px]" 
+          <div
+            className="w-12 h-[3px] mt-3 mb-4 rounded-[2px]"
             style={{ background: "linear-gradient(90deg, #4F8EF7, #38BDF8)" }}
           ></div>
         </div>
@@ -114,7 +114,7 @@ export default function Projects() {
             const topBorderClass = getTopBorderClass(project);
 
             return (
-              <div 
+              <div
                 key={index}
                 className="relative p-[1px] rounded-xl bg-[#1E2D4A] hover:bg-gradient-to-r hover:from-[#4F8EF7] hover:to-[#38BDF8] transition-all duration-300 shadow-md group hover:-translate-y-1 fade-up"
               >
@@ -154,7 +154,7 @@ export default function Projects() {
                             <span>Code</span>
                           </a>
                         ) : (
-                          <div 
+                          <div
                             className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#6B7280] opacity-30 border border-[#1E2D4A] rounded-lg px-2.5 py-1 cursor-not-allowed group relative bg-[#111827]"
                           >
                             <Code size={12} />
@@ -177,7 +177,7 @@ export default function Projects() {
                             <span>Live</span>
                           </a>
                         ) : (
-                          <div 
+                          <div
                             className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#6B7280] opacity-30 border border-[#1E2D4A] rounded-lg px-2.5 py-1 cursor-not-allowed group relative bg-[#111827]"
                           >
                             <ExternalLink size={12} />
