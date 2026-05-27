@@ -38,7 +38,7 @@ export default function Projects() {
         "Video progress auto-saved every 5 seconds; synced to MongoDB on pause or tab-close via visibilitychange event for seamless student resume-playback"
       ],
       links: {
-        github: "",
+        github: "https://github.com/vishalr7667/LMS_FRONTEND",
         live: ""
       }
     },
