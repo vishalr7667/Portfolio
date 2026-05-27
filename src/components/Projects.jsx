@@ -116,7 +116,7 @@ export default function Projects() {
             return (
               <div
                 key={index}
-                className="relative p-[1px] rounded-xl bg-[#1E2D4A] hover:bg-gradient-to-r hover:from-[#4F8EF7] hover:to-[#38BDF8] transition-all duration-300 shadow-md group hover:-translate-y-1 fade-up"
+                className="relative p-[1px] rounded-xl bg-[#1E2D4A] hover:bg-gradient-to-r hover:from-[#4F8EF7] hover:to-[#38BDF8] transition-all duration-300 shadow-md hover:-translate-y-1 fade-up"
               >
                 {/* Inner Card Content */}
                 <div className={`bg-[#111827] rounded-[11px] p-6 h-full flex flex-col justify-between ${topBorderClass}`}>
@@ -148,20 +148,17 @@ export default function Projects() {
                             href={project.links.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#6B7280] hover:text-[#4F8EF7] border border-[#1E2D4A] rounded-lg px-2.5 py-1 transition-colors bg-[#111827]"
+                            className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#9CA3AF] hover:text-[#38BDF8] border border-[#1E2D4A] hover:border-[#38BDF8]/40 rounded-lg px-2.5 py-1 transition-colors bg-[#1E2D4A]/10 hover:bg-[#1E2D4A]/40"
                           >
                             <Code size={12} />
                             <span>Code</span>
                           </a>
                         ) : (
                           <div
-                            className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#6B7280] opacity-30 border border-[#1E2D4A] rounded-lg px-2.5 py-1 cursor-not-allowed group relative bg-[#111827]"
+                            className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#E2E8F0] opacity-30 border border-[#1E2D4A] rounded-lg px-2.5 py-1 cursor-not-allowed bg-[#111827]"
                           >
                             <Code size={12} />
                             <span>Code</span>
-                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-[#111827] border border-[#1E2D4A] text-[10px] text-[#F1F5F9] rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-md z-20">
-                              Private repo
-                            </div>
                           </div>
                         )}
 
@@ -171,20 +168,17 @@ export default function Projects() {
                             href={project.links.live}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#6B7280] hover:text-[#4F8EF7] border border-[#1E2D4A] rounded-lg px-2.5 py-1 transition-colors bg-[#111827]"
+                            className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#9CA3AF] hover:text-[#38BDF8] border border-[#1E2D4A] hover:border-[#38BDF8]/40 rounded-lg px-2.5 py-1 transition-colors bg-[#1E2D4A]/10 hover:bg-[#1E2D4A]/40"
                           >
                             <ExternalLink size={12} />
                             <span>Live</span>
                           </a>
                         ) : (
                           <div
-                            className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#6B7280] opacity-30 border border-[#1E2D4A] rounded-lg px-2.5 py-1 cursor-not-allowed group relative bg-[#111827]"
+                            className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#E2E8F0] opacity-30 border border-[#1E2D4A] rounded-lg px-2.5 py-1 cursor-not-allowed bg-[#111827]"
                           >
                             <ExternalLink size={12} />
                             <span>Live</span>
-                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-[#111827] border border-[#1E2D4A] text-[10px] text-[#F1F5F9] rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-md z-20">
-                              Private repo
-                            </div>
                           </div>
                         )}
                       </div>
@@ -202,7 +196,7 @@ export default function Projects() {
                   </div>
 
                   {/* Tags footer - matching skills pills design */}
-                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-[#1E2D4A]">
+                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-slate-800">
                     {project.tags.map((tag, tagIndex) => (
                       <span
                         key={tagIndex}

@@ -157,3 +157,27 @@ pre[class*="language-"] {
   transform: translateY(0);
 }
 
+/* Premium spring-bounce hover effect */
+.bounce-hover {
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.2s ease, box-shadow 0.5s ease;
+}
+
+.bounce-hover:hover {
+  transform: scale(1.03) translateY(-6px);
+}
+
+/* Continuous smooth floating/bouncing animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+

@@ -2,6 +2,68 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Download, ChevronDown } from "lucide-react";
 
+function TypingHeading({ text, highlightText, className, highlightClassName, startDelay = 0, speed = 60 }) {
+  const [displayedText, setDisplayedText] = React.useState("");
+  
+  React.useEffect(() => {
+    let timeoutId;
+    let intervalId;
+    
+    timeoutId = setTimeout(() => {
+      let i = 0;
+      intervalId = setInterval(() => {
+        if (i < text.length) {
+          setDisplayedText(text.slice(0, i + 1));
+          i++;
+        } else {
+          clearInterval(intervalId);
+        }
+      }, speed);
+    }, startDelay);
+
+    return () => {
+      clearTimeout(timeoutId);
+      clearInterval(intervalId);
+    };
+  }, [text, startDelay, speed]);
+
+  if (highlightText && text.includes(highlightText)) {
+    const parts = text.split(highlightText);
+    const firstPartLength = parts[0].length;
+    const isTypingFirstPart = displayedText.length <= firstPartLength;
+    
+    if (isTypingFirstPart) {
+      return (
+        <span className={className}>
+          {displayedText}
+          <span className="inline-block w-[2px] h-[0.75em] bg-current ml-1 animate-pulse align-middle"></span>
+        </span>
+      );
+    } else {
+      const firstPart = parts[0];
+      const highlightedTyped = displayedText.slice(firstPartLength);
+      return (
+        <span className={className}>
+          {firstPart}
+          <span className={highlightClassName}>{highlightedTyped}</span>
+          {displayedText.length < text.length && (
+            <span className="inline-block w-[2px] h-[0.75em] bg-current ml-1 animate-pulse align-middle"></span>
+          )}
+        </span>
+      );
+    }
+  }
+
+  return (
+    <span className={className}>
+      {displayedText}
+      {displayedText.length < text.length && (
+        <span className="inline-block w-[2px] h-[0.75em] bg-current ml-1 animate-pulse align-middle"></span>
+      )}
+    </span>
+  );
+}
+
 export default function Hero() {
   // Retrieve resume URL from Vite environment variables
   const resumeUrl = import.meta.env.VITE_RESUME_URL;
@@ -21,7 +83,10 @@ export default function Hero() {
         {/* Left Column: Text Content */}
         <div className="flex flex-col space-y-8 fade-up visible">
           {/* Availability Badge */}
-          <div className="inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full bg-[#1E2D4A]/50 border border-[#1E2D4A] backdrop-blur-sm mb-6">
+          <div 
+            className="inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full bg-[#1E2D4A]/50 border border-[#1E2D4A] backdrop-blur-sm mb-6"
+            style={{ boxShadow: "0 0 20px rgba(56, 189, 248, 0.25)" }}
+          >
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#38BDF8] opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#38BDF8]"></span>
@@ -33,12 +98,22 @@ export default function Hero() {
 
           {/* Heading */}
           <div className="space-y-4">
-            <h1 className="text-4xl sm:text-5xl lg:text-[64px] font-bold leading-tight tracking-tight text-[#F1F5F9]">
-              Hi, I'm <span className="text-[#4F8EF7]">Vishal Kumar</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-[64px] font-bold leading-tight tracking-tight text-[#F1F5F9] min-h-[1.2em]">
+              <TypingHeading 
+                text="Hi, I'm Vishal Kumar" 
+                highlightText="Vishal Kumar" 
+                highlightClassName="text-[#4F8EF7]" 
+                startDelay={200}
+                speed={60}
+              />
             </h1>
-            <p className="text-[clamp(24px,3vw,36px)] font-semibold text-[#38BDF8] leading-none lg:whitespace-nowrap">
-              Full Stack Developer · MERN & Laravel
-            </p>
+            <div className="text-[clamp(24px,3vw,36px)] font-semibold text-[#38BDF8] leading-none lg:whitespace-nowrap min-h-[1.2em]">
+              <TypingHeading 
+                text="Full Stack Developer · MERN & Laravel" 
+                startDelay={1500}
+                speed={45}
+              />
+            </div>
           </div>
 
           {/* Bio */}
@@ -86,7 +161,7 @@ export default function Hero() {
         </div>
 
         {/* Right Column: Static Code Block (GitHub Dark themed) */}
-        <div className="w-full max-w-lg lg:max-w-none mx-auto border border-[#30363D] rounded-xl overflow-hidden shadow-lg bg-[#0D1117] fade-up visible">
+        <div className="w-full max-w-lg lg:max-w-none mx-auto border border-[#30363D] rounded-xl overflow-hidden shadow-lg bg-[#0D1117] fade-up visible animate-float">
           {/* macOS window header */}
           <div className="bg-[#161B22] px-4 py-3 border-b border-[#30363D] flex items-center justify-between">
             <div className="flex gap-1.5">

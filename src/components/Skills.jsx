@@ -150,7 +150,7 @@ export default function Skills() {
               return (
                 <div 
                   key={groupIndex} 
-                  className={`bg-[#111827] border border-[#1E2D4A] border-l-[3px] hover:border-l-[4px] ${group.borderColorClass} rounded-xl p-6 transition-all duration-200 ease-in-out hover:-translate-y-[2px] hover:shadow-[0_4px_20px_rgba(0,0,0,0.3)] stagger-card`}
+                  className={`bg-[#111827] border border-[#1E2D4A] border-l-[3px] hover:border-l-[4px] ${group.borderColorClass} rounded-xl p-6 bounce-hover hover:shadow-[0_4px_20px_rgba(0,0,0,0.3)] stagger-card`}
                   style={{ transitionDelay: `${groupIndex * 80}ms` }}
                 >
                   {/* Card Title & Icon */}

@@ -78,10 +78,13 @@ export default function Contact() {
           <h2 className="text-3xl md:text-[38px] font-semibold text-[#F1F5F9] leading-tight">
             Let's Work Together
           </h2>
-          <p className="text-[#D1D5DB] text-base md:text-lg mt-3">
+          <div
+            className="w-12 h-[3px] mt-3 mb-4 rounded-[2px] mx-auto"
+            style={{ background: "linear-gradient(90deg, #4F8EF7, #38BDF8)" }}
+          ></div>
+          <p className="text-[#D1D5DB] text-base md:text-lg">
             Open to Full Stack roles in Mohali · Chandigarh · Ludhiana · Jalandhar · Remote
           </p>
-          <div className="h-1 w-20 bg-[#4F8EF7] mx-auto mt-4 rounded-full"></div>
         </div>
 
         {/* 2 Column Layout */}
